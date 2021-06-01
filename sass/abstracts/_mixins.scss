@@ -1,0 +1,57 @@
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+}
+
+@mixin baElements($w, $h) {
+    display: inline-block;
+    width: $w;
+    height: $h;
+    @content;
+    content: '';
+}
+
+@mixin badImages($w, $h, $bgi) {
+    @include baElements($w, $h);
+
+    background-image: $bgi;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+// ORDER base --> page --> general --> layoout --> component --> ...
+
+@mixin respond($breakpoint) {
+
+    @if ($breakpoint==phone) {
+
+        // 576px
+        @media only screen and (max-width: 36em) {
+            @content;
+        }
+    }
+
+    @if ($breakpoint==tablet) {
+
+        // 768px
+        @media only screen and (max-width: 48em) {
+            @content;
+        }
+    }
+
+    @if ($breakpoint==tabletLand) {
+
+        // 992px
+        @media only screen and (max-width: 62em) {
+            @content;
+        }
+    }
+
+    @if ($breakpoint==largeDevice) {
+
+        // 1800px
+        @media only screen and (min-width: 112.5em) {
+            @content;
+        }
+    }
+}
